@@ -1,0 +1,96 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = false
+
+# aws !!
+# format = """
+# $cmd_duration
+# [░▒▓](#a3aed2)\
+# $username\
+# [](bg:#5070c0 fg:#a3aed2)\
+# $directory\
+# [](fg:#5070c0 bg:#304260)\
+# $git_branch\
+# $git_status\
+# [](fg:#394260 bg:#212736)\
+# $nodejs\
+# $rust\
+# $golang\
+# $php\
+# [](fg:#212736 bg:#1d2230)\
+# $time\
+# [ ](fg:#1d2230)\
+# \n \
+# $username $character """
+
+format = """
+$cmd_duration
+$username $directory$env_var$git_branch$git_status
+[        ](fg:cyan) $time $character
+"""
+
+[cmd_duration]
+# format = "[└───────](fg:cyan) [^^](dimmed) took [$duration](bold yellow) [───────](fg:cyan)\n"
+format = "[        ](fg:cyan) [^^](dimmed) [took $duration](fg:cyan)\n"
+min_time = 1_000
+
+[username]
+format = '[$user](dimmed)'
+
+[directory]
+format = "[in](dimmed) [$path](fg:cyan)"
+truncation_length = 5
+truncation_symbol = "…/"
+truncate_to_repo = true
+
+# [directory.substitutions]
+# "Documents" = "󰈙 "
+# "Downloads" = " "
+# "Music" = " "
+# "Pictures" = " "
+
+[git_branch]
+symbol = ""
+format = ' [on](dimmed) [$branch](fg:yellow)'
+[git_state]
+format = '([$state ($progress_current/$progress_total)](fg:blue)'
+[git_status]
+format = ' [$all_status$ahead_behind](bold fg:purple)'
+
+[time]
+disabled = false
+# time_format = "%b%d %R" # Hour:Minute Format
+time_format = "%F %T" # Hour:Minute Format
+format = '[at](dimmed) [$time](fg:cyan) [UTC](dimmed)'
+[character] # The name of the module we are configuring is 'character'
+# success_symbol = '[](bold green)' # The 'success_symbol' segment is being set to '➜' with the color 'bold green'
+# error_symbol = "[](bold red)"
+success_symbol = '[>](green)'
+error_symbol = '[x](bold red)'
+
+
+# more situational
+[env_var.CHEZMOI]
+format = '[ \(chezmoi-cd\)](purple)'
+
+
+[nodejs]
+symbol = ""
+style = "bg:#212736"
+format = '[[ $symbol ($version) ](fg:#5070c0 bg:#212736)]($style)'
+[rust]
+symbol = ""
+style = "bg:#212736"
+format = '[[ $symbol ($version) ](fg:#5070c0 bg:#212736)]($style)'
+[golang]
+symbol = ""
+style = "bg:#212736"
+format = '[[ $symbol ($version) ](fg:#5070c0 bg:#212736)]($style)'
+[php]
+symbol = ""
+style = "bg:#212736"
+format = '[[ $symbol ($version) ](fg:#5070c0 bg:#212736)]($style)'
+
+[hostname]
+format = '[@$hostname ](bg:#a3aed2 fg:#090c0c)'

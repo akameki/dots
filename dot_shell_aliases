@@ -1,11 +1,19 @@
 # this is my custom ~/.shell_aliases
 
 alias aliases='chezmoi edit ~/.shell_aliases && chezmoi apply ~/.shell_aliases && . ~/.shell_aliases'
+alias cme='chezmoi edit'
+alias cmcd='chezmoi cd'
+
 
 alias please="sudo !!" 
 
-alias l.='ls -a'
-alias ls='ls --hyperlink=auto --color=auto'
+alias ls='ls --color=auto --file-type --group-directories-first'
+alias l.='ls -d .*'
+alias la='ls -A'
+alias ll='ls -l --time-style="+%y/%m/%d"'
+alias ll.='ll -d .*'
+alias lla='ll -A'
 
 
+alias ta='tmux a'
 alias grep='grep --color=auto'
